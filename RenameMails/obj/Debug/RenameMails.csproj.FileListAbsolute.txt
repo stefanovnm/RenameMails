@@ -1,0 +1,9 @@
+c:\users\nikola\documents\visual studio 2015\Projects\RenameMails\RenameMails\bin\Debug\RenameMails.exe.config
+C:\Users\Nikola\documents\visual studio 2015\Projects\RenameMails\RenameMails\bin\Debug\RenameMails.exe
+C:\Users\Nikola\documents\visual studio 2015\Projects\RenameMails\RenameMails\bin\Debug\RenameMails.pdb
+C:\Users\Nikola\documents\visual studio 2015\Projects\RenameMails\RenameMails\obj\Debug\RenameMails.csprojResolveAssemblyReference.cache
+C:\Users\Nikola\documents\visual studio 2015\Projects\RenameMails\RenameMails\obj\Debug\RenameMails.Form1.resources
+C:\Users\Nikola\documents\visual studio 2015\Projects\RenameMails\RenameMails\obj\Debug\RenameMails.Properties.Resources.resources
+C:\Users\Nikola\documents\visual studio 2015\Projects\RenameMails\RenameMails\obj\Debug\RenameMails.csproj.GenerateResource.Cache
+C:\Users\Nikola\documents\visual studio 2015\Projects\RenameMails\RenameMails\obj\Debug\RenameMails.exe
+C:\Users\Nikola\documents\visual studio 2015\Projects\RenameMails\RenameMails\obj\Debug\RenameMails.pdb
