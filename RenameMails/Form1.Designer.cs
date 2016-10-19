@@ -1,11 +1,18 @@
 ﻿namespace RenameMails
 {
-    partial class Form1
+    public partial class Form1
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+
+        private System.Windows.Forms.Button renameAll;
+        private System.Windows.Forms.Button rename;
+        private System.Windows.Forms.Button move;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -13,10 +20,11 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -28,12 +36,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.renameAll = new System.Windows.Forms.Button();
             this.rename = new System.Windows.Forms.Button();
             this.move = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // renameAll
@@ -94,19 +104,36 @@
             this.label1.Text = "Remove all whitespaces";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
+            this.label4.Location = new System.Drawing.Point(12, 82);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 12);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "rev 01";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 88);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CausesValidation = false;
+            this.ClientSize = new System.Drawing.Size(318, 96);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.move);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.rename);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.renameAll);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "PM tool for mails";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,12 +141,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button renameAll;
-        private System.Windows.Forms.Button rename;
-        private System.Windows.Forms.Button move;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
     }
 }
-

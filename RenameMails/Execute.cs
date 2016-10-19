@@ -18,5 +18,10 @@ namespace RenameMails
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
+
+        public static void Finish()
+        {
+            Application.Exit();
+        }
     }
 }

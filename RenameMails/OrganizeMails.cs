@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RenameMails
 {
@@ -12,18 +10,27 @@ namespace RenameMails
     {
         public static void MoveFiles()
         {
-            var directory = CreateDirectory();
-            var oldDirectory = ReturnDirectoryName(directory);
             var attachmentFiles = GetAttachments();
-
-            foreach (var attachment in attachmentFiles)
+            var fileName = GetMainMailFile();
+            if (fileName == string.Empty)
             {
-                var oldFile = oldDirectory + "\\" + ReturnFileNameFromDirectoryName(attachment);
-                var newFile = directory + "\\" + ReturnFileNameFromDirectoryName(attachment);
-                File.Move(oldFile, newFile);
+                MessageBox.Show("There are no mail with valid structure!");
+                return;
             }
 
-            var fileName = GetMainMailFile();
+            if (attachmentFiles.Count > 0)
+            {
+                var directory = CreateDirectory();
+                var oldDirectory = ReturnDirectoryName(directory);
+
+                foreach (var attachment in attachmentFiles)
+                {
+                    var oldFile = oldDirectory + "\\" + ReturnFileNameFromDirectoryName(attachment);
+                    var newFile = directory + "\\" + ReturnFileNameFromDirectoryName(attachment);
+                    File.Move(oldFile, newFile);
+                }
+            }
+
             var newFileName = ReturnNewMailName(fileName);
 
             Dictionary<string, string> forReplace = SplitByHashTag();
@@ -34,9 +41,87 @@ namespace RenameMails
             }
 
             File.Move(fileName, newFileName);
+            Execute.Finish();
         }
 
-        
+        public static string GetCurrentDay()
+        {
+            string date = string.Empty;
+
+            DateTime today = DateTime.Today;
+
+            date = today.ToString("yyyyMMdd");
+
+            return date;
+        }
+
+        /// <summary>
+        /// Replace all special characters in current filename
+        /// </summary>
+        /// <param name="file">file to rename</param>
+        /// <param name="whitespace">if true - replace whitespaces else replace umlauts</param>
+        public static string ReturnNewFilename(string file, bool whitespace)
+        {
+            Dictionary<string, string> letters = GetLettersToRename();
+
+            string newfile = file;
+
+            if (whitespace)
+            {
+                newfile = newfile.Replace(" ", "_");
+                while (newfile.IndexOf("__") > 1)
+                {
+                    newfile = newfile.Replace("__", "_");
+                }
+                newfile = newfile.Replace("_-_", "-");
+                newfile = newfile.Replace("-_", "-");
+                newfile = newfile.Replace("_-", "-");
+            }
+            else
+            {
+                foreach (KeyValuePair<string, string> letter in letters)
+                {
+                    newfile = newfile.Replace(letter.Key, letter.Value);
+                }
+            }
+
+            return newfile;
+        }
+
+        public static List<string> GetAllFiles()
+        {
+            var location = Directory.GetCurrentDirectory();
+            string[] files = Directory.GetFiles(location);
+
+            List<string> allFiles = new List<string>();
+
+            foreach (var file in files)
+            {
+                var fileLength = file.Length;
+
+                var isExeFile = file.Substring(fileLength - 4, 4) == ".exe";
+                if (!isExeFile)
+                {
+                    allFiles.Add(file);
+                }
+            }
+
+            return allFiles;
+        }
+
+        public static void RenameFiles(bool whitespace)
+        {
+            List<string> filesToRename = new List<string>();
+            var files = GetAllFiles();
+            foreach (var file in files)
+            {
+                var newFilename = ReturnNewFilename(file, whitespace);
+                if (file != newFilename)
+                {
+                    File.Move(file, newFilename);
+                }
+            }
+        }
 
         private static Dictionary<string, string> SplitByHashTag()
         {
@@ -57,7 +142,6 @@ namespace RenameMails
             file.Close();
             return result;
         }
-
 
         private static string ReturnNewMailName(string file)
         {
@@ -105,15 +189,26 @@ namespace RenameMails
 
             var files = GetAllFiles();
 
-
             foreach (var file in files)
             {
                 var fileName = ReturnFileNameFromDirectoryName(file);
-
-                if (fileName.Substring(0, 8) == today)
+                if (fileName.Length > 8)
                 {
-                    mainFile = file;
-                    break;
+                    string dateString = fileName.Substring(0, 8);
+                    string format = "yyyyMMdd";
+                    DateTime dateTime;
+                    if (DateTime.TryParseExact(dateString, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
+                    {
+                        // MessageBox.Show(dateTime.ToString());
+                        mainFile = file;
+                        break;
+                    }
+                    
+                    // if (fileName.Substring(0, 8) == today)
+                    // {
+                    //     mainFile = file;
+                    //     break;
+                    // }
                 }
             }
 
@@ -157,81 +252,6 @@ namespace RenameMails
             var directory = file.Substring(0, lastIndexOfSlash);
 
             return directory;
-        }
-
-        public static string GetCurrentDay()
-        {
-            string date = string.Empty;
-
-            DateTime today = DateTime.Today;
-
-            date = today.ToString("yyyyMMdd");
-
-            return date;
-        }
-
-        /// <summary>
-        /// Replace all special characters in current filename
-        /// </summary>
-        /// <param name="file">file to rename</param>
-        /// <param name="whitespace">if true - replace whitespaces else replace umlauts</param>
-        public static string ReturnNewFilename(string file, bool whitespace)
-        {
-            Dictionary<string, string> letters = GetLettersToRename();
-
-            string newfile = file;
-
-            if (whitespace)
-            {
-                newfile = newfile.Replace(" ", "_");
-                while (newfile.IndexOf("__") > 1)
-                {
-                    newfile = newfile.Replace("__", "_");
-                }
-            }
-            else
-            {
-                foreach (KeyValuePair<string, string> letter in letters)
-                {
-                    newfile = newfile.Replace(letter.Key, letter.Value);
-                }
-            }
-
-            return newfile;
-        }
-
-        public static List<string> GetAllFiles()
-        {
-            var location = Directory.GetCurrentDirectory();
-            string[] files = Directory.GetFiles(location);
-
-            List<string> allFiles = new List<string>();
-
-            foreach (var file in files)
-            {
-                var fileLength = file.Length;
-
-                var isExeFile = file.Substring(fileLength - 4, 4) == ".exe";
-                if (!isExeFile)
-                {
-                    allFiles.Add(file);
-                }
-            }
-            return allFiles;
-        }
-
-        public static void RenameFiles(bool whitespace)
-        {
-            List<string> filesToRename = new List<string>();
-            var files = GetAllFiles();
-            foreach (var file in files)
-            {
-                var newFilename = ReturnNewFilename(file, whitespace);
-                if (file != newFilename)
-                {
-                    File.Move(file, newFilename);
-                }
-            }
         }
 
         private static Dictionary<string, string> GetLettersToRename()
