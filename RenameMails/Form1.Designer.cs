@@ -44,6 +44,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // renameAll
@@ -108,12 +110,31 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
-            this.label4.Location = new System.Drawing.Point(12, 82);
+            this.label4.Location = new System.Drawing.Point(12, 105);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 12);
             this.label4.TabIndex = 6;
-            this.label4.Text = "rev 01";
+            this.label4.Text = "rev 02";
             this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(182, 87);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(128, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Do All";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 92);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(149, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Move all attachments to folder";
             // 
             // Form1
             // 
@@ -121,7 +142,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(318, 96);
+            this.ClientSize = new System.Drawing.Size(318, 122);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.move);
             this.Controls.Add(this.label3);
@@ -142,5 +165,7 @@
         #endregion
 
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
     }
 }

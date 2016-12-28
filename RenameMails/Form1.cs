@@ -49,5 +49,12 @@ namespace RenameMails
         {
 
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            OrganizeMails.RenameFiles(true);
+            OrganizeMails.RenameFiles(false);
+            OrganizeMails.MoveFiles();
+        }
     }
 }

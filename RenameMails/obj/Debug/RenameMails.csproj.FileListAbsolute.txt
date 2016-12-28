@@ -16,3 +16,12 @@ C:\Users\User\Desktop\RenameMails\RenameMails\obj\Debug\RenameMails.csprojResolv
 C:\Users\User\Desktop\RenameMails\RenameMails\obj\Debug\RenameMails.Form1.resources
 C:\Users\User\Desktop\RenameMails\RenameMails\obj\Debug\RenameMails.Properties.Resources.resources
 C:\Users\User\Desktop\RenameMails\RenameMails\obj\Debug\RenameMails.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\VisualStudioProjects\RenameMails\RenameMails\bin\Debug\RenameMails.exe.config
+C:\Users\User\Desktop\VisualStudioProjects\RenameMails\RenameMails\obj\Debug\RenameMails.exe
+C:\Users\User\Desktop\VisualStudioProjects\RenameMails\RenameMails\obj\Debug\RenameMails.pdb
+C:\Users\User\Desktop\VisualStudioProjects\RenameMails\RenameMails\bin\Debug\RenameMails.exe
+C:\Users\User\Desktop\VisualStudioProjects\RenameMails\RenameMails\bin\Debug\RenameMails.pdb
+C:\Users\User\Desktop\VisualStudioProjects\RenameMails\RenameMails\obj\Debug\RenameMails.Form1.resources
+C:\Users\User\Desktop\VisualStudioProjects\RenameMails\RenameMails\obj\Debug\RenameMails.Properties.Resources.resources
+C:\Users\User\Desktop\VisualStudioProjects\RenameMails\RenameMails\obj\Debug\RenameMails.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\VisualStudioProjects\RenameMails\RenameMails\obj\Debug\RenameMails.csprojResolveAssemblyReference.cache
